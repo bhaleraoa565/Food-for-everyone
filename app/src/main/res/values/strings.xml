@@ -7,6 +7,9 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <string name="return_policy">All our Foods are double checked before leaving\n our stores
+    so by any case you found a broken\n food please contact our hotline immediately.</string>
+
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus

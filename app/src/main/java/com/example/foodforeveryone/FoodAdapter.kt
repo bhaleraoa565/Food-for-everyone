@@ -3,6 +3,7 @@ package com.example.foodforeveryone
 import androidx.recyclerview.widget.RecyclerView
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +16,7 @@ class FoodAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
 
-    // ViewHolder class to hold item views
+
     class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val foodImg: ImageView = itemView.findViewById(R.id.food_image)
         val hotel: TextView = itemView.findViewById(R.id.hotel_name)
@@ -40,7 +41,18 @@ class FoodAdapter(
         holder.foodPrice.text = foodItem.foodPrice
         holder.time.text = foodItem.time
         holder.ratings.text = foodItem.rating
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, FoodDetailActivity::class.java).apply {
+                putExtra("foodName", foodList[position].foodName)
+                putExtra("foodPrice", foodList[position].foodPrice)
+                putExtra("foodImg", foodList[position].foodImg)
+                putExtra("foodInfo" , foodList[position].time)
+            }
+            context.startActivity(intent)
+        }
     }
+
 
     // Return the size of the list
     override fun getItemCount(): Int {

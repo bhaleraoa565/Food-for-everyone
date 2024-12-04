@@ -15,9 +15,8 @@ class SplashActivity : AppCompatActivity() {
 
         loginPageIntent.setOnClickListener{
 
-            val Intent = Intent(this,LoginActivity::class.java)
-
-            startActivity(Intent)
+            val intent = Intent(this,LoginActivity::class.java)
+            startActivity(intent)
 
         }
 

@@ -39,16 +39,24 @@ class CartActivity : AppCompatActivity() {
                 val parts = it.split("|")
                 CartItem(parts[0], parts[1]) // Assuming a CartItem class with name and price
             }.toMutableList()
-        foodAdapter = CartAdapter(cartItems.toMutableList()) { position ->
-            val itemToRemove = cartItems[position]
-            cartItems.removeAt(position)
-            foodAdapter.notifyItemRemoved(position)
+        foodAdapter = CartAdapter(cartItems) { position ->
+            if (position in cartItems.indices) {
+                // Remove item from list
+                cartItems.removeAt(position)
+                foodAdapter.notifyItemRemoved(position)
 
-            // Update SharedPreferences
-            val updatedCartData = cartItems.map { "${it.name}|${it.price}" }.toSet()
-            sharedPref.edit().putStringSet("cartItems", updatedCartData).apply()
-            toggleNoItemsMessage(cartItems.isEmpty(), recyclerView, noItemsTextView)
+                // Notify RecyclerView of changes to avoid duplicates
+                foodAdapter.notifyItemRangeChanged(position, cartItems.size)
+
+                // Update SharedPreferences
+                val updatedCartData = cartItems.map { "${it.name}|${it.price}" }.toSet()
+                sharedPref.edit().putStringSet("cartItems", updatedCartData).apply()
+
+                // Check if the list is empty and toggle the "No items in cart" message
+                toggleNoItemsMessage(cartItems.isEmpty(), recyclerView, noItemsTextView)
+            }
         }
+
         recyclerView = findViewById(R.id.cart_recycler)
         val manager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         recyclerView.layoutManager = manager

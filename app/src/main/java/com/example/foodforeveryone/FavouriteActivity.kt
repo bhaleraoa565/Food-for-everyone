@@ -34,27 +34,33 @@ class FavouriteActivity : AppCompatActivity() {
 // Convert data to list of cart items
         val cartItems = cartData.mapNotNull {
             val parts = it.split("|")
-            Log.d("CartDataDebug", "Parts: $parts")
             if (parts.size == 3) {
-                FavItem(parts[0], parts[1], parts[2])
+                FavItem(parts[0], parts[1], parts[2]) // Assuming a FavItem class with name, price, and time
             } else {
-                Log.e("CartDataError", "Invalid entry: $it")
-                null
+                null // Skip invalid or corrupted entries
             }
         }.toMutableList()
 
+// Initialize adapter with lambda for deletion
+        foodAdapter = FavAdapter(cartItems) { position ->
+            if (position in cartItems.indices) {
+                // Remove item from list
+                cartItems.removeAt(position)
+                foodAdapter.notifyItemRemoved(position)
 
+                // Notify RecyclerView of changes to prevent duplicates
+                foodAdapter.notifyItemRangeChanged(position, cartItems.size)
 
-        foodAdapter = FavAdapter(cartItems.toMutableList()) { position ->
-            val itemToRemove = cartItems[position]
-            cartItems.removeAt(position)
-            foodAdapter.notifyItemRemoved(position)
+                // Update SharedPreferences
+                val updatedCartData = cartItems.map { "${it.name}|${it.price}|${it.foodTime}" }.toSet()
+                sharedPref.edit().putStringSet("cartItems", updatedCartData).apply()
 
-            // Update SharedPreferences
-            val updatedCartData = cartItems.map { "${it.name}|${it.price}|${it.foodTime}" }.toSet()
-            sharedPref.edit().putStringSet("cartItems", updatedCartData).apply()
-            toggleNoItemsMessage(cartItems.isEmpty(), recyclerView, noItemsTextView)
+                // Check if the list is empty and toggle the "No items" message
+                toggleNoItemsMessage(cartItems.isEmpty(), recyclerView, noItemsTextView)
+            }
         }
+        
+
         recyclerView = findViewById(R.id.fav)
         val manager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         recyclerView.layoutManager = manager

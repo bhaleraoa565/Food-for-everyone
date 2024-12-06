@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F7F7FF"
-    android:layout_margin="16dp"
-    tools:context=".FoodDetailActivity">
+    android:id="@+id/main"
+    tools:context=".view.activity.FoodDetailActivity">
 
     <ImageView
         android:id="@+id/back"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_margin="16dp"
         android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,6 +20,7 @@
         android:id="@+id/fav"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_margin="16dp"
         android:src="@drawable/ic_heart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -75,6 +77,7 @@
         android:textSize="20sp"
         android:gravity="start"
         android:textStyle="italic"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,6 +92,7 @@
         android:textColor="#BDBDBD"
         android:gravity="start"
         android:textStyle="italic"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,6 +104,7 @@
         android:layout_height="wrap_content"
         android:text="Return policy"
         android:textSize="20sp"
+        android:layout_marginStart="16dp"
         android:gravity="start"
         android:textStyle="italic"
         android:layout_marginTop="20dp"
@@ -113,6 +118,7 @@
         android:layout_height="wrap_content"
         android:text="@string/return_policy"
         android:textSize="15sp"
+        android:layout_marginStart="16dp"
         android:textColor="#BDBDBD"
         android:gravity="start"
         android:textStyle="italic"

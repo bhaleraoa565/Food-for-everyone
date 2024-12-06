@@ -1,8 +1,10 @@
-package com.example.foodforeveryone
+package com.example.foodforeveryone.view.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.foodforeveryone.view.fragment.LoginFragment
+import com.example.foodforeveryone.view.fragment.RegisterFragment
 
 class FragmentAdapter(
     fm: FragmentManager,

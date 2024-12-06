@@ -1,9 +1,10 @@
-package com.example.foodforeveryone
+package com.example.foodforeveryone.view.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.foodforeveryone.R
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
 
         loginPageIntent.setOnClickListener{
 
-            val intent = Intent(this,LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
 
         }

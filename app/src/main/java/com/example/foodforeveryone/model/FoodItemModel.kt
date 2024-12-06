@@ -1,4 +1,4 @@
-package com.example.foodforeveryone
+package com.example.foodforeveryone.model
 
 data class FoodItemModel(
     val foodImg: Int,

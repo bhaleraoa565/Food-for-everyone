@@ -1,16 +1,15 @@
-package com.example.foodforeveryone
+package com.example.foodforeveryone.view.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
+import com.example.foodforeveryone.view.adapter.FoodItemAdapter
+import com.example.foodforeveryone.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.tabs.TabLayout
-import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -26,7 +25,7 @@ class DashboardActivity : AppCompatActivity() {
         viewPager = findViewById(R.id.dashboard_view_pager)
         card = findViewById(R.id.cart)
         card.setOnClickListener {
-            val intent = Intent(this,CartActivity::class.java)
+            val intent = Intent(this, CartActivity::class.java)
             startActivity(intent)
         }
 
